@@ -2,7 +2,7 @@
 LiquidCrystal lcd( 4, 6, 10, 11, 12, 13 );
 
 void setup() {
-     Serial.begin(9600) ;      // パソコン(ArduinoIDE)とシリアル通信の準備を行う
+     Serial.begin(9600) ; 
      lcd.begin( 16, 2 );
 }
 
