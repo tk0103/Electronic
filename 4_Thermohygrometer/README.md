@@ -4,3 +4,6 @@
 # 部品
 * LCDモジュール(P-10185)
 * 半固定ボリューム 10kΩ
+
+# 簡単なレベル変換
+http://botalab.m37.coreserver.jp/botalab.info/2016/09/10/5v-3-3v-%E3%83%AC%E3%83%99%E3%83%AB%E5%A4%89%E6%8F%9B%E3%81%AE%E5%8E%9F%E7%90%86/
