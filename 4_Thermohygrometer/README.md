@@ -23,4 +23,4 @@ http://botalab.m37.coreserver.jp/botalab.info/2016/09/10/5v-3-3v-%E3%83%AC%E3%83
 # Image
 |ブレッドボード実装|
 |---|
-|<img src="https://github.com/tk0103/Arduino/blob/master/4_Thermohygrometer/45136.jpg" alt="test" title="test" width="400" height="200">|
+|<img src="https://github.com/tk0103/Arduino/blob/master/4_Thermohygrometer/45136.jpg" alt="test" title="test" width="400" height="400">|
