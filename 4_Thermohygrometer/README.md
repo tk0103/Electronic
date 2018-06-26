@@ -2,7 +2,7 @@
 * 温度・湿度・気圧（BME280）+LCD表示
 * 温度30度以上または湿度70％以上の場合は赤色点滅
 * 温度26度以上または湿度40％以上の場合は緑色点滅
-* 温度30度以上または湿度70％以上の場合は青色点滅
+* それ以外の場合は青色点滅
 * LEDの明るさはPWMを利用してゆるやかに消灯
 
 # 部品
@@ -17,10 +17,10 @@ http://botalab.m37.coreserver.jp/botalab.info/2016/09/10/5v-3-3v-%E3%83%AC%E3%83
 
 # フルカラーLED
 * 接続タイプ：カソードコモン
-* 標準電流：２０ｍＡ
-* ＶＦ：赤２．０Ｖ／緑３．６Ｖ／青３．６Ｖ
+* 標準電流：20mA
+* ＶＦ：赤2.0Ｖ／緑3.6Ｖ／青3.6Ｖ
 
 # Image
 |ブレッドボード実装|
 |---|
-|<img src="https://github.com/tk0103/Arduino/blob/master/4_Thermohygrometer/45136.jpg" alt="test" title="test">|
+|<img src="https://github.com/tk0103/Arduino/blob/master/4_Thermohygrometer/45136.jpg" alt="test" title="test" width="473" height="336>|
