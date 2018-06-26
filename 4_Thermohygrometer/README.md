@@ -23,6 +23,6 @@ http://botalab.m37.coreserver.jp/botalab.info/2016/09/10/5v-3-3v-%E3%83%AC%E3%83
 * ＶＦ：赤2.0Ｖ／緑3.6Ｖ／青3.6Ｖ
 
 # Image
-|ブレッドボード実装|
+|実装|
 |---|
 |<img src="https://github.com/tk0103/Arduino/blob/master/4_Thermohygrometer/45136.jpg" alt="test" title="test" width="473" height="336">|
