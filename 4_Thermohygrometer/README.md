@@ -19,3 +19,8 @@ http://botalab.m37.coreserver.jp/botalab.info/2016/09/10/5v-3-3v-%E3%83%AC%E3%83
 * 接続タイプ：カソードコモン
 * 標準電流：２０ｍＡ
 * ＶＦ：赤２．０Ｖ／緑３．６Ｖ／青３．６Ｖ
+
+# Image
+|ブレッドボード実装|
+|---|
+|<img src="https://github.com/tk0103/Proposed_bilateral/blob/master/Images/original%2325.png" alt="test" title="test" width="200" height="200">|

@@ -89,7 +89,7 @@ void loop()
   lcd.print(press_act, 0);
   lcd.print("[hpa]");
 
-  if (temp_act > 30.0 || hum_act > 60) {
+  if (temp_act > 30.0 || hum_act > 70) {
     digitalWrite(3, LOW);
     digitalWrite(5, LOW);
     for (int i = 255; i >= 0; i--) {
