@@ -1,23 +1,23 @@
-/*
- * IRremote: IRsendDemo - demonstrates sending IR codes with IRsend
- * An IR LED must be connected to Arduino PWM pin 3.
- * Version 0.1 July, 2009
- * Copyright 2009 Ken Shirriff
- * http://arcfn.com
- */
 
 #include <IRremote.h>
 
 IRsend irsend;
+int inPin = 7;
+int statu =0;
 
-void setup()
-{
+void setup(){
+   Serial.begin(9600);  
+  pinMode(inPin, INPUT); 
 }
 
 void loop() {
-	for (int i = 0; i < 3; i++) {
-		irsend.sendNEC(0xa90, 12);
-		delay(40);
-	}
-	delay(5000); //5 second delay between each signal burst
+  int khz = 38; // 38kHz carrier frequency for the NEC protocol
+   
+   statu = digitalRead(inPin); 
+  Serial.print(statu);
+   if(statu == HIGH){
+      unsigned int irSignal[] ={8950,4300, 650,450, 650,450, 600,500, 600,500, 600,500, 600,500, 600,500, 600,500, 600,1600, 600,1600, 600,1550, 650,1550, 650,1550, 650,1550, 650,450, 650,1550, 650,1550, 650,450, 650,1550, 650,1550, 650,450, 600,500, 600,500, 600,500, 600,500, 600,1600, 600,500, 600,500, 600,1600, 600,1600, 600,1550, 650,1550, 650};  // NEC FDB04F
+      irsend.sendRaw(irSignal, sizeof(irSignal) / sizeof(irSignal[0]), khz); //Note the approach used to automatically calculate the size of the array.
+  }
+  delay(1000); //In this example, the signal will be repeated every 5 seconds, approximately.
 }
