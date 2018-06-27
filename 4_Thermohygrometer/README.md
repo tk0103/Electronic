@@ -17,10 +17,13 @@
 ## 簡単なレベル変換
 http://botalab.m37.coreserver.jp/botalab.info/2016/09/10/5v-3-3v-%E3%83%AC%E3%83%99%E3%83%AB%E5%A4%89%E6%8F%9B%E3%81%AE%E5%8E%9F%E7%90%86/
 
+## I2C通信
+http://www.picfun.com/f1/f06.html
+
 ## フルカラーLED
 * 接続タイプ：カソードコモン
 * 標準電流：20mA
-* ＶＦ：赤2.0Ｖ／緑3.6Ｖ／青3.6Ｖ
+* VF：赤2.0Ｖ／緑3.6Ｖ／青3.6Ｖ
 
 ## Image
 |実装|
