@@ -6,18 +6,25 @@ int inPin = 7;
 int statu =0;
 
 void setup(){
-   Serial.begin(9600);  
+  Serial.begin(9600);  
   pinMode(inPin, INPUT); 
 }
 
 void loop() {
   int khz = 38; // 38kHz carrier frequency for the NEC protocol
    
-   statu = digitalRead(inPin); 
+  statu = digitalRead(inPin); 
   Serial.print(statu);
-   if(statu == HIGH){
-      unsigned int irSignal[] ={8950,4300, 650,450, 650,450, 600,500, 600,500, 600,500, 600,500, 600,500, 600,500, 600,1600, 600,1600, 600,1550, 650,1550, 650,1550, 650,1550, 650,450, 650,1550, 650,1550, 650,450, 650,1550, 650,1550, 650,450, 600,500, 600,500, 600,500, 600,500, 600,1600, 600,500, 600,500, 600,1600, 600,1600, 600,1550, 650,1550, 650};  // NEC FDB04F
-      irsend.sendRaw(irSignal, sizeof(irSignal) / sizeof(irSignal[0]), khz); //Note the approach used to automatically calculate the size of the array.
+  if(statu == HIGH){
+    //Electric fan
+    unsigned int irSignal[] = {8850,4500, 700,450, 650,1650, 600,1650, 700,450, 700,450, 700,450, 600,500, 600,500, 650,1600, 650,1700, 550,550, 600,500, 600,550, 600,1650, 600,500, 650,1600, 650,500, 600,500, 650,500, 600,550, 600,1650, 600,1650, 600,1750, 600,500, 600,550, 600,500, 600,550, 550,550, 600,550, 550,1700, 550,1700, 600,1700, 550};  // NEC 60C50E07
+    irsend.sendRaw(irSignal, sizeof(irSignal) / sizeof(irSignal[0]), khz); 
+
+    //Light
+    unsigned int irSignal2[] = {1500,200, 1350,300, 550,1100, 1400,300, 500,1150, 550,1100, 1400,300, 500,1200, 500,1150, 500,1200, 450,1200, 500};
+    irsend.sendRaw(irSignal2, sizeof(irSignal2) / sizeof(irSignal2[0]), khz); 
+
+    delay(5000);
   }
-  delay(1000); //In this example, the signal will be repeated every 5 seconds, approximately.
+  delay(1000);
 }
