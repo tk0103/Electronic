@@ -17,6 +17,7 @@ http://elm-chan.org/docs/ir_format.html
 * カスタマーコード16bit(0x00,0xbf)
 * データコードは、8bitのデータと8bitの反転データ
 
+|ボタンデータコード8bit|
 |ボタン|データコード8bit|
 |:---:|:---:|
 |Power|0x0d|
