@@ -1,30 +1,80 @@
-
-#include <IRremote.h>
-
-IRsend irsend;
-int inPin = 7;
-int statu =0;
-
-void setup(){
-  Serial.begin(9600);  
-  pinMode(inPin, INPUT); 
-}
-
-void loop() {
-  int khz = 38; // 38kHz carrier frequency for the NEC protocol
+class irControlNecFormat {
+  public:
+    // constructor
+    irControlNecFormat(byte ledPin, byte custom0, byte custom1);
+    void sendCommand(byte data);
+  private:
+    byte _ledPin;   // the pin number which the LED is connected
+    byte _custom0;  // custom code 
+    byte _custom1;  // custom code
+     
+    void sendData(byte date);
+    void on(int num);
+};
+ 
+irControlNecFormat::irControlNecFormat(byte ledPin, byte custom0, byte custom1) {
+  _ledPin = 1 << ledPin;
+  _custom0 = custom0;
+  _custom1 = custom1;
    
+  pinMode(ledPin, OUTPUT);  // set the ledPin as an OUTPUT
+}
+ 
+void irControlNecFormat::sendCommand(byte data){
+  on(346);                  // leader code(ON)
+  delayMicroseconds(4500);  // leader code(OFF)
+   
+  sendData(_custom0);       // custom code
+  sendData(_custom1);       // custom code
+   
+  sendData(data);           // data
+  sendData(~data);          // ~data
+   
+  on(22);                   // stop bit
+}
+ 
+void irControlNecFormat::sendData(byte data) {
+  for(int i = 0; i < 8; i++) {
+    on(22);
+    switch(data & 1) {
+    case 0:
+      delayMicroseconds(565);
+      break;
+    case 1:
+      delayMicroseconds(1690);
+      break;
+    }
+    data = data >> 1;
+  }
+}
+ 
+void irControlNecFormat::on(int num) {
+  for(int i = 0; i < num; i++) {
+    PORTD |= _ledPin;
+    delayMicroseconds(9);
+    PORTD &= ~_ledPin;
+    delayMicroseconds(17);
+  }
+}
+ 
+// Connect an LED to the No.3 pin.
+// Custom code: 0x00 0xbf
+irControlNecFormat controller(3, 0x00, 0xbf);
+ 
+void setup() {
+}
+ 
+void loop() {
+  int inPin = 7;
+  int statu =0;
+
   statu = digitalRead(inPin); 
   Serial.print(statu);
+  
   if(statu == HIGH){
-    //Electric fan
-    unsigned int irSignal[] = {8850,4500, 700,450, 650,1650, 600,1650, 700,450, 700,450, 700,450, 600,500, 600,500, 650,1600, 650,1700, 550,550, 600,500, 600,550, 600,1650, 600,500, 650,1600, 650,500, 600,500, 650,500, 600,550, 600,1650, 600,1650, 600,1750, 600,500, 600,550, 600,500, 600,550, 550,550, 600,550, 550,1700, 550,1700, 600,1700, 550};  // NEC 60C50E07
-    irsend.sendRaw(irSignal, sizeof(irSignal) / sizeof(irSignal[0]), khz); 
-
-    //Light
-    unsigned int irSignal2[] = {1500,200, 1350,300, 550,1100, 1400,300, 500,1150, 550,1100, 1400,300, 500,1200, 500,1150, 500,1200, 450,1200, 500};
-    irsend.sendRaw(irSignal2, sizeof(irSignal2) / sizeof(irSignal2[0]), khz); 
-
-    delay(5000);
+  controller.sendCommand(0x1e);
+  delay(5000);
   }
-  delay(1000);
+  
+  delay(2000);
 }
