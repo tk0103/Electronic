@@ -18,6 +18,7 @@ http://elm-chan.org/docs/ir_format.html
 * データコードは、8bitのデータと8bitの反転データ
 
 |ボタンデータコード8bit|
+|:---:|
 |ボタン|データコード8bit|
 |:---:|:---:|
 |Power|0x0d|
