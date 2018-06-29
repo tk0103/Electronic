@@ -1,5 +1,6 @@
 #include <LiquidCrystal.h>
 LiquidCrystal lcd( 4, 6, 10, 11, 12, 13 );
+char s[16];
 
 void setup() {
      Serial.begin(9600) ; 
@@ -21,8 +22,11 @@ void loop() {
         delay(30);
      }
 
-     ans = tmp2 /5;
-     lcd.print(ans);
-     delay(5000) ;              
-tmp2 = 0;
+    ans = tmp2 /5;
+    lcd.print("Temp:");
+    lcd.print(ans);
+    sprintf(s, "[%cC]", 0b11011111);
+    lcd.print(s);
+    delay(5000) ;              
+    tmp2 = 0;
 }
