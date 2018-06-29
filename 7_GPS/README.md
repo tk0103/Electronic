@@ -1,14 +1,19 @@
 ## Arduino
-GPS log記録
+* GPS受信機キットを用いて、経度・緯度・海抜を取得
+* LCD表示
 
 ## 部品
 * GPS受信機キット「みちびき」３機受信対応(K-09991)
+* スイッチング・ダイオード1N4148(I-00941)
+* LCDモジュール(P-10185)
+* 半固定ボリューム
+* 抵抗
 
 ## GPS
-
+https://www.petitmonte.com/robot/howto_gysfdmaxb.html
 
 
 ## Image
 |実装|
 |---|
-|<img src="" alt="test" title="test" width="473" height="336">|
+|<img src="https://github.com/tk0103/Arduino/blob/master/5_GPS/45269.jpg" alt="test" title="test" width="704" height="297">|
