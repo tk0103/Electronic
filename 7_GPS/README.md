@@ -16,4 +16,4 @@ https://www.petitmonte.com/robot/howto_gysfdmaxb.html
 ## Image
 |実装|
 |---|
-|<img src="https://github.com/tk0103/Arduino/blob/master/5_GPS/45269.jpg" alt="test" title="test" width="704" height="297">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/7_GPS/45269.jpg" alt="test" title="test" width="704" height="297">|
