@@ -15,5 +15,5 @@ Lチカ
 * 抵抗
 
 ## 参考
-https://www.arduino.cc/en/Tutorial/ShiftOut
+https://www.arduino.cc/en/Tutorial/ShiftOut  
 http://wp.bumi2.com/using-many-switches-on-arduino/
