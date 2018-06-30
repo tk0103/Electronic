@@ -9,7 +9,7 @@ Lチカ
 ## Image
 |実装|
 |---|
-|<img src="https://github.com/tk0103/Electronic/blob/master/01_LEDflash_LEDShitOut/4527.gif" alt="test" title="test" width="360" height="270">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/01_LEDflash_LEDShitOut/45271.gif" alt="test" title="test" width="360" height="270">|
 
 ---
 # シフトレジスタを用いた制御
