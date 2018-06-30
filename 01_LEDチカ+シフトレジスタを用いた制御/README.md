@@ -17,3 +17,8 @@ Lチカ
 ## 参考
 https://www.arduino.cc/en/Tutorial/ShiftOut  
 http://wp.bumi2.com/using-many-switches-on-arduino/
+
+## Image
+|実装|
+|---|
+|<img src="https://github.com/tk0103/Electronic/blob/master/1_LED/45270.gif" alt="test" title="test" width="480" height="270">|
