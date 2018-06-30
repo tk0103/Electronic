@@ -15,5 +15,5 @@ https://ht-deko.com/arduino/atmega328p.html
 ## Image
 |実装|
 |---|
-|<img src="https://github.com/tk0103/Arduino/blob/master/05_ArduinoUNO互換スケッチ書き込み器/45085.jpg" alt="test" title="test" width="473" height="336">|
-|<img src="https://github.com/tk0103/Arduino/blob/master/05_ArduinoUNO互換スケッチ書き込み器/45087.jpg" alt="test" title="test" width="473" height="336">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/05_ArduinoUno_SketchWriter/45085.jpg" alt="test" title="test" width="473" height="336">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/05_ArduinoUno_SketchWriter/45087.jpg" alt="test" title="test" width="473" height="336">|
