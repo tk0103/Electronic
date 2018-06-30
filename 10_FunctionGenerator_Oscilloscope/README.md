@@ -9,12 +9,10 @@
 * ACアダプター15V1.2A(M-02195)
 
 ## Image
-|矩形波|
-|---|
+|矩形波(Rectangle Wave)|
+|:---:|
 |<img src="https://github.com/tk0103/Electronic/blob/master/10_FunctionGenerator_Oscilloscope/kukei.jpg" alt="test" title="test" width="510" height="369">|
-|サイン波|
-|---|
+|サイン波(Sin Wave)|
 |<img src="https://github.com/tk0103/Electronic/blob/master/10_FunctionGenerator_Oscilloscope/sin.jpg" alt="test" title="test" width="510" height="356">|
-|ノコギリ波|
-|---|
+|ノコギリ波(Sawtooth Wave)|
 |<img src="https://github.com/tk0103/Electronic/blob/master/10_FunctionGenerator_Oscilloscope/nokogiri.jpg" alt="test" title="test" width="510" height="380">|
