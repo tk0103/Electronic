@@ -12,6 +12,7 @@
 * 電解コンデンサ 25V470mF
 * 3.5mmステレオジャック基盤取付用(C-02460)
 * 3.5mmステレオミニプラグオーディオケーブル(C-13083)
+* 単4ケース
 
 ## ロジック特性
 https://www.marutsu.co.jp/contents/shop/marutsu/mame/168.html
