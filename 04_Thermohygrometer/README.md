@@ -28,4 +28,4 @@ http://www.picfun.com/f1/f06.html
 ## Image
 |実装|
 |---|
-|<img src="https://github.com/tk0103/Arduino/blob/master/4_Thermohygrometer/45136.jpg" alt="test" title="test" width="473" height="336">|
+|<img src="https://github.com/tk0103/Arduino/blob/master/04_Thermohygrometer/45136.jpg" alt="test" title="test" width="473" height="336">|

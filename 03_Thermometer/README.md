@@ -14,4 +14,4 @@
 ## Image
 |実装|
 |---|
-|<img src="https://github.com/tk0103/Arduino/blob/master/3_Thermometer/45266.jpg" alt="test" title="test" width="561" height="271">|
+|<img src="https://github.com/tk0103/Arduino/blob/master/03_Thermometer/45266.jpg" alt="test" title="test" width="561" height="271">|
