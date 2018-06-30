@@ -8,4 +8,4 @@ LCD Hello World
 ## Image
 |Hello World|
 |---|
-|<img src="https://github.com/tk0103/Electronic/blob/master/2_LCD/45138.jpg" alt="test" title="test" width="473" height="229">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/02_LCD/45138.jpg" alt="test" title="test" width="473" height="229">|
