@@ -1,6 +1,6 @@
 # 概要
 * ファンクションジェネレータキット・オペアンプキット
-* キットを組んだだけで何もしていない
+* 動作確認
 
 ## 部品
 * ファンクションジェネレータキットminiDDS(K-06298)
@@ -11,4 +11,6 @@
 ## Image
 |実装|
 |---|
-|<img src="" alt="test" title="test" width="473" height="336">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/10_FunctionGenerator_Oscilloscope/kukei.jpg" alt="test" title="test" width="510" height="369">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/10_FunctionGenerator_Oscilloscope/sin.jpg" alt="test" title="test" width="510" height="356">|
+|<img src="https://github.com/tk0103/Electronic/blob/master/10_FunctionGenerator_Oscilloscope/nokogiri.jpg" alt="test" title="test" width="510" height="380">|
