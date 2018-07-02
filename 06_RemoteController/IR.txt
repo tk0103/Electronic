@@ -1,0 +1,191 @@
+const int ReceivePin = 7; //Green LED
+const int SendPin = 6; //Red LED
+const int Sensorpin = 11; //Sensor Output PIN
+const int IROutputpin = 3; //IR LED Output PIN
+const int FanreadPin = A0; //Fan read PIN
+#define COUNT_NUM 68
+unsigned long time[COUNT_NUM];  /* 時刻を格納する配列 */
+
+
+class irControlNecFormat {
+  public:
+    // constructor
+    irControlNecFormat(byte ledPin, byte custom0, byte custom1);
+    void sendCommandTV(byte data);
+    void sendCommandFan(byte data);
+  private:
+    byte _ledPin;   // the pin number which the LED is connected
+    byte _custom0;  // custom code
+    byte _custom1;  // custom code
+
+    void sendData(byte date);
+    void on(int num);
+};
+
+irControlNecFormat::irControlNecFormat(byte ledPin, byte custom0, byte custom1) {
+  _ledPin = 1 << ledPin;
+  _custom0 = custom0;
+  _custom1 = custom1;
+
+  pinMode(ledPin, OUTPUT);  // set the ledPin as an OUTPUT
+}
+
+void irControlNecFormat::sendCommandTV(byte data){
+  on(346);                  // leader code(ON)
+  delayMicroseconds(4500);  // leader code(OFF)
+
+  sendData(_custom0);       // custom code
+  sendData(_custom1);       // custom code
+
+  sendData(data);           // data
+  sendData(~data);          // ~data
+
+  on(22);                   // stop bit
+}
+
+void irControlNecFormat::sendCommandFan(byte data){
+  on(346);                  // leader code(ON)
+  delayMicroseconds(4500);  // leader code(OFF)
+
+  sendData(_custom0);       // custom code
+  sendData(_custom1);       // custom code
+
+  sendData(0x70);           // data
+  sendData(data);          // ~data
+
+  on(22);                   // stop bit
+}
+
+void irControlNecFormat::sendData(byte data) {
+  for(int i = 0; i < 8; i++) {
+    on(22);
+    switch(data & 1) {
+    case 0:
+      delayMicroseconds(565);
+      break;
+    case 1:
+      delayMicroseconds(1690);
+      break;
+    }
+    data = data >> 1;
+  }
+}
+
+void irControlNecFormat::on(int num) {
+  for(int i = 0; i < num; i++) {
+    PORTD |= _ledPin;
+    delayMicroseconds(9);
+    PORTD &= ~_ledPin;
+    delayMicroseconds(17);
+  }
+}
+
+void print_data(int start) {
+  int code = 0;
+  char str[32];
+
+  sprintf(str, "  ");
+  for (int i = 0; i < 8; i++) {
+    if ((time[2 * i + start + 2] - time[2 * i + start]) > 1500) {
+      code |= 1 << i;
+      sprintf(&str[2 * (i + 1)], "1 ");
+    } else {
+      sprintf(&str[2 * (i + 1)], "0 ");
+    }
+  }
+
+  sprintf(&str[17], ", %02x", code);
+  Serial.println(str);
+}
+
+//main
+void setup() {
+  Serial.begin(9600);
+  pinMode(ReceivePin, INPUT);
+  pinMode(SendPin, INPUT);
+}
+
+void loop() {
+  //Recive
+  if(digitalRead(ReceivePin) == HIGH){
+    int repeat = 0;
+    int mode; /* 読み取るデータを決める */
+    char str[64];
+
+    /* 68回データを読み取る */
+    mode = HIGH; /* 最初はHIGH */
+    for (int i = 0; i < COUNT_NUM; i++) {
+      while(digitalRead(Sensorpin) == mode) { /* 状態が変わるまで待つ */
+          ;
+      }
+      time[i] = micros(); /* 時刻を記録する */
+
+      if (mode == HIGH) { /* onとoffが交互に来るので、待つべき状態を変える */
+        mode = LOW;
+      } else {
+        mode = HIGH;
+      }
+
+      /* リーダコードのoffが2.25msだと次にストップビットが来て終了 */
+      /* 3000ms以下かどうかで判定 */
+      if ((i == 3) && ((time[2] - time[1])) < 3000)  {
+        repeat = 1;
+        break;
+      }
+    }
+
+    /* データの出力 */
+    Serial.print("--------- BEGIN ---------\n");
+
+    sprintf(str, "Leader:\n  HIGH %dms\n", (time[1] - time[0]));
+    Serial.print(str);
+    sprintf(str, "  LOW  %4dms\n\n", (time[2] - time[1]));
+    Serial.print(str);
+
+    if(repeat) {
+      Serial.println("Repeat");
+    } else {
+      Serial.println("Custom Code:");
+      print_data(2);
+      print_data(18);
+
+      Serial.println("");
+
+      Serial.println("Data:");
+      print_data(34);
+      print_data(50);
+
+      Serial.print("---------  END  ---------\n\n");
+    }
+  }
+
+  //Send
+  if(digitalRead(SendPin) == HIGH){
+    // Custom code: 0x06,0xa3
+    irControlNecFormat controller(IROutputpin, 0x06,0xa3);
+
+    float fan = analogRead(FanreadPin)*5.0 / 1023.0; //Conver to voltage
+    float margin = 0.2;
+    float VCC = 5.0 + margin;
+
+    if(fan <= VCC/2){
+      controller.sendCommandFan(0x80); //
+      Serial.print("SWING\n");
+      delay(2000);
+    }
+    else if(fan <= VCC*2/3){
+      controller.sendCommandFan(0x00); //
+      Serial.print("AIRVOLUME\n");
+      delay(2000);
+    }
+    else if(fan <= VCC*3/4){
+      controller.sendCommandFan(0xe0); //
+      Serial.print("POWER\n");
+      delay(2000);
+    }
+    else{
+      delay(2000);
+    }
+  }
+    delay(500);
+}
