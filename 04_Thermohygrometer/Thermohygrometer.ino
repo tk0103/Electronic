@@ -1,7 +1,6 @@
-
 #include <Wire.h>
 #include <LiquidCrystal.h>
-LiquidCrystal lcd( 4, 6, 10, 11, 12, 13 );
+LiquidCrystal lcd(4,6,10,11,12,13);
 #define BME280_ADDRESS 0x76
 unsigned long int hum_raw, temp_raw, pres_raw;
 signed long int t_fine;
@@ -26,8 +25,7 @@ int16_t dig_H5;
 int8_t  dig_H6;
 char s[16];
 
-void setup()
-{
+void setup(){
   uint8_t osrs_t = 1;             //Temperature oversampling x 1
   uint8_t osrs_p = 1;             //Pressure oversampling x 1
   uint8_t osrs_h = 1;             //Humidity oversampling x 1
@@ -52,13 +50,11 @@ void setup()
 }
 
 
-void loop()
-{
+void loop(){
   double temp_act = 0.0, press_act = 0.0, hum_act = 0.0;
   double temp_cal, press_cal, hum_cal;
 
   readData();
-
   temp_cal = calibration_T(temp_raw);
   press_cal = calibration_P(pres_raw);
   hum_cal = calibration_H(hum_raw);

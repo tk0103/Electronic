@@ -1,25 +1,12 @@
-/*
-  Shift Register Example
-  Turning on the outputs of a 74HC595 using an array
+//Shift Register Example
+const int latchPin = 8; //ST_CP
+const int clockPin = 12; //SH_CP
+const int dataPin = 11; //DS
 
- Hardware:
- * 74HC595 shift register 
- * LEDs attached to each of the outputs of the shift register
-
- */
-//Pin connected to ST_CP of 74HC595
-int latchPin = 8;
-//Pin connected to SH_CP of 74HC595
-int clockPin = 12;
-////Pin connected to DS of 74HC595
-int dataPin = 11;
-
-//holders for infromation you're going to pass to shifting function
 byte data;
 byte dataArray[10];
 
 void setup() {
-  //set pins to output because they are addressed in the main loop
   pinMode(latchPin, OUTPUT);
   Serial.begin(9600);
 
@@ -38,7 +25,7 @@ void setup() {
 
   //function that blinks all the LEDs
   //gets passed the number of blinks and the pause time
-  blinkAll_2Bytes(2,500); 
+  blinkAll_2Bytes(2,500);
 }
 
 void loop() {
@@ -50,7 +37,7 @@ void loop() {
     digitalWrite(latchPin, 0);
     //move 'em out
     shiftOut(dataPin, clockPin, data);
-    //return the latch pin high to signal chip that it 
+    //return the latch pin high to signal chip that it
     //no longer needs to listen for information
     digitalWrite(latchPin, 1);
     delay(300);
@@ -59,7 +46,7 @@ void loop() {
 
 // the heart of the program
 void shiftOut(int myDataPin, int myClockPin, byte myDataOut) {
-  // This shifts 8 bits out MSB first, 
+  // This shifts 8 bits out MSB first,
   //on the rising edge of the clock,
   //clock idles low
 
@@ -77,24 +64,24 @@ void shiftOut(int myDataPin, int myClockPin, byte myDataOut) {
   //for each bit in the byte myDataOut
   //NOTICE THAT WE ARE COUNTING DOWN in our for loop
   //This means that %00000001 or "1" will go through such
-  //that it will be pin Q0 that lights. 
+  //that it will be pin Q0 that lights.
   for (i=7; i>=0; i--)  {
     digitalWrite(myClockPin, 0);
 
-    //if the value passed to myDataOut and a bitmask result 
+    //if the value passed to myDataOut and a bitmask result
     // true then... so if we are at i=6 and our value is
-    // %11010100 it would the code compares it to %01000000 
+    // %11010100 it would the code compares it to %01000000
     // and proceeds to set pinState to 1.
     if ( myDataOut & (1<<i) ) {
       pinState= 1;
     }
-    else {  
+    else {
       pinState= 0;
     }
 
     //Sets the pin to HIGH or LOW depending on pinState
     digitalWrite(myDataPin, pinState);
-    //register shifts bits on upstroke of clock pin  
+    //register shifts bits on upstroke of clock pin
     digitalWrite(myClockPin, 1);
     //zero the data pin after shift to prevent bleed through
     digitalWrite(myDataPin, 0);
@@ -105,7 +92,7 @@ void shiftOut(int myDataPin, int myClockPin, byte myDataOut) {
 }
 
 
-//blinks the whole register based on the number of times you want to 
+//blinks the whole register based on the number of times you want to
 //blink "n" and the pause between them "d"
 //starts with a moment of darkness to make sure the first blink
 //has its full visual effect.
