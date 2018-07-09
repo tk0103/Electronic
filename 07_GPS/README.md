@@ -12,6 +12,7 @@
 
 ## GPS
 https://www.petitmonte.com/robot/howto_gysfdmaxb.html
+http://www.hiramine.com/physicalcomputing/general/gps_nmeaformat.html
 
 
 ## Image
